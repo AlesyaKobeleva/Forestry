@@ -8,12 +8,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<header>
+<header style="margin: 30px;">
     <c:choose>
         <c:when test="${pageContext.request.userPrincipal.name != null}">
-            <div>
-                Пользователь : ${pageContext.request.userPrincipal.name} | <a href="<c:url value="/logout" />">
-                Выйти</a></div>
+            <div style="float: right;">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                Пользователь : ${pageContext.request.userPrincipal.name} |
+                <a href="<c:url value="/logout" />"> Выйти</a>
+            </div>
 
             <nav>
                 <ul class="nav nav-pills" role="tablist">
@@ -32,9 +34,12 @@
 
 
 </header>
+<div style="margin: 30px;" class="panel panel-default">
+    <div class="panel-body">
+        <h3>${title}</h3>
+        <p>${message}</p>
+    </div>
+</div>
 
-<h1>${title}</h1>
-
-<h3>${message}</h3>
 </body>
 </html>
