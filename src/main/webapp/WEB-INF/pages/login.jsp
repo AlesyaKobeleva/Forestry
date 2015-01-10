@@ -9,6 +9,7 @@
     <style>
         body {
             background: url("http://bootstraptaste.com/theme/siimple/assets/img/main-bg.jpg") 50%;
+            color: #fff;
         }
         .error {
             padding: 15px;
@@ -30,7 +31,7 @@
             border-color: #bce8f1;
         }
         .form-wrap {
-            margin: 15% 30%;
+            margin: 15% 5%;
         }
     </style>
 </head>

@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: url("http://bootstraptaste.com/theme/siimple/assets/img/main-bg.jpg") 50%;
+            color: #fff;
+        }
+
+        .panel-custom {
+            color: black;
+        }
+    </style>
 </head>
 <body>
 <header style="margin: 30px;">
@@ -35,7 +45,7 @@
 
 </header>
 <div style="margin: 30px;" class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel-body panel-custom">
         <h3>${title}</h3>
         <p>${message}</p>
     </div>
