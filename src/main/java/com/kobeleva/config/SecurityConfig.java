@@ -13,9 +13,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("kobeleva").password("123456").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("dba").password("123456").roles("DBA");
+        auth.inMemoryAuthentication().withUser("kobeleva").password("123456").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("master").password("master").roles("MASTER");
+        auth.inMemoryAuthentication().withUser("engineer").password("eng").roles("ENGINEER");
     }
 
     @Override
@@ -23,7 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/profile/**").access("hasRole('ROLE_USER')")
-                .antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
+                .antMatchers("/master/**").access("hasRole('ROLE_MASTER')")
+                .antMatchers("/engineer/**").access("hasRole('ROLE_ENGINEER')")
                 .and()
                 .formLogin().loginPage("/login").failureUrl("/login?error")
                 .usernameParameter("username").passwordParameter("password")
