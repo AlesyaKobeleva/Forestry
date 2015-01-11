@@ -1,15 +1,20 @@
 package com.kobeleva.web.controller;
 
+import com.kobeleva.config.MasterHandler;
 import com.kobeleva.config.core.MongoConfig;
 import com.kobeleva.db.CuttingSection;
+import com.kobeleva.db.WoodType;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +43,7 @@ public class SpringSecurityController {
         return model;
     }
 
-    @RequestMapping(value = { "/master**" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/master" }, method = RequestMethod.GET)
     public ModelAndView masterPage() {
         if (init == 0) {
             initDB();
@@ -49,6 +54,16 @@ public class SpringSecurityController {
         model.addObject("cuttingSections", cuttingSections);
         model.setViewName("master");
         return model;
+    }
+
+    @RequestMapping(value="/master", method=RequestMethod.POST)
+    public String greetingSubmit(@ModelAttribute MasterHandler masterHandler, Model model) {
+        model.addAttribute("title", "Добавление новой породы");
+        model.addAttribute("message", "Данные успешно сохранены");
+
+        WoodType woodType = new WoodType(masterHandler.getSpecies(), masterHandler.getCuttingSection());
+        mongoOperation.save(woodType);
+        return "home";
     }
 
     @RequestMapping(value = { "/engineer**" }, method = RequestMethod.GET)

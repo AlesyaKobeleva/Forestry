@@ -57,20 +57,20 @@
                     <div class='col-md-12 form-group'>
                         <h1>Добавить древесину</h1>
                     </div>
-                    <form action="<c:url value='/master' />" class="require-validation" id="payment-form"
+                    <form action="#" th:action="@{/master}" th:object="${master}"  class="require-validation" id="payment-form"
                           method="POST">
 
                         <div class='form-row'>
                             <div class='col-md-12 form-group card'>
                                 <label class='control-label'>Порода древесины: </label>
-                                <input autocomplete='off' class='form-control' type='text' name="species">
+                                <input autocomplete='off' class='form-control' type='text' th:field="*{species}">
                             </div>
                         </div>
 
                         <div class='form-row'>
                             <div class='col-md-12 form-group'>
                                 <label class='control-label'>Участок вырубки: </label>
-                                <select class="form-control" name="cuttingSection" id="cuttingSection">
+                                <select class="form-control" th:field="*{cuttingSection}"  id="cuttingSection">
                                     <c:forEach  items="${cuttingSections}" var="item">
                                         <option value="${item}">${item}</option>
                                     </c:forEach>
@@ -92,6 +92,8 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
                     </form>
                 </div>
 
