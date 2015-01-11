@@ -37,6 +37,9 @@
                             <li role="presentation"><a href="<c:url value="/master" />">Учет
                                 Древесины</a></li>
                         </c:when>
+                        <c:when test="${pageContext.request.isUserInRole('ROLE_ENGINEER')}">
+                            <li role="presentation"><a href="<c:url value="/engineer" />">Добавление Заказа</a></li>
+                        </c:when>
                     </c:choose>
                 </ul>
             </nav>

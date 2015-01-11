@@ -51,6 +51,17 @@ public class SpringSecurityController {
         return model;
     }
 
+    @RequestMapping(value = { "/engineer**" }, method = RequestMethod.GET)
+    public ModelAndView engineerPage() {
+        if (init == 0) {
+            initDB();
+        }
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("engineer");
+        return model;
+    }
+
     @RequestMapping(value = "/profile**", method = RequestMethod.GET)
     public ModelAndView profilePage() {
         if (init == 0) {
