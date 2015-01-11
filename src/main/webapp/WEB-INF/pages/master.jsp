@@ -57,20 +57,20 @@
                     <div class='col-md-12 form-group'>
                         <h1>Добавить древесину</h1>
                     </div>
-                    <form accept-charset="UTF-8" action="<c:url value='/master' />" class="require-validation" id="payment-form"
+                    <form action="<c:url value='/master' />" class="require-validation" id="payment-form"
                           method="POST">
 
                         <div class='form-row'>
-                            <div class='col-xs-12 form-group card required'>
+                            <div class='col-md-12 form-group card'>
                                 <label class='control-label'>Порода древесины: </label>
-                                <input autocomplete='off' class='form-control' size='20' type='text' name="species">
+                                <input autocomplete='off' class='form-control' type='text' name="species">
                             </div>
                         </div>
 
                         <div class='form-row'>
-                            <div class='col-xs-12 form-group required'>
+                            <div class='col-md-12 form-group'>
                                 <label class='control-label'>Участок вырубки: </label>
-                                <select class="form-control" size="4" name="cuttingSection" id="cuttingSection">
+                                <select class="form-control" name="cuttingSection" id="cuttingSection">
                                     <c:forEach  items="${cuttingSections}" var="item">
                                         <option value="${item}">${item}</option>
                                     </c:forEach>
