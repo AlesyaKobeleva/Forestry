@@ -18,4 +18,9 @@ public class CuttingSection {
 
         this.section = section;
     }
+
+    @Override
+    public String toString() {
+        return section;
+    }
 }
