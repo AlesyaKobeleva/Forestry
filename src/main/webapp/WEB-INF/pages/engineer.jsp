@@ -56,36 +56,36 @@
           <div class='col-md-12 form-group'>
             <h1>Добавление Заказа</h1>
           </div>
-          <form action="<c:url value='/engineer' />" class="require-validation" id="payment-form"
+          <form action="#" th:action="@{/engineer}" th:object="${engineerHandler}" class="require-validation" id="payment-form"
                 method="POST">
 
             <div class='form-row'>
               <div class='col-md-12 form-group card'>
                 <label class='control-label'>Тип доски: </label>
-                <input autocomplete='off' class='form-control' type='text' name="woodType">
+                <input autocomplete='off' class='form-control' type='text' name="woodType" th:field="*{woodType}">
               </div>
             </div>
 
             <div class='form-row'>
               <div class='col-md-12 form-group card'>
                 <label class='control-label'>Длина доски: </label>
-                <input autocomplete='off' class='form-control' type='text' name="woodLength">
+                <input autocomplete='off' class='form-control' type='text' name="woodLength" th:field="*{woodLength}">
               </div>
             </div>
 
             <div class='form-row'>
               <div class='col-md-12 form-group card'>
                 <label class='control-label'>Количество: </label>
-                <input autocomplete='off' class='form-control' type='text' name="woodCount">
+                <input autocomplete='off' class='form-control' type='text' name="woodCount" th:field="*{woodCount}">
               </div>
             </div>
 
             <div class='form-row'>
               <div class='col-md-12 form-group'>
                 <label class='control-label'>Порода: </label>
-                <select class="form-control" name="species" id="species">
+                <select class="form-control" name="species" id="species" th:field="*{species}>
                   <c:forEach  items="${species}" var="item">
-                    <option value="${item}">${item}</option>
+                    <option value="${item}">${item.species}</option>
                   </c:forEach>
                 </select>
               </div>
@@ -94,7 +94,6 @@
             <div class='form-row'>
               <div class='col-md-12 form-group'>
                 <button class='form-control btn btn-primary submit-button' type='submit'> Добавить »</button>
-
               </div>
             </div>
 
@@ -105,6 +104,9 @@
                 </div>
               </div>
             </div>
+
+            <input type="hidden" name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
           </form>
         </div>
 

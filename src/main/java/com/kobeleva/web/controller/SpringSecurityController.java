@@ -1,8 +1,11 @@
 package com.kobeleva.web.controller;
 
+import com.kobeleva.config.EngineerHandler;
 import com.kobeleva.config.MasterHandler;
 import com.kobeleva.config.core.MongoConfig;
 import com.kobeleva.db.CuttingSection;
+import com.kobeleva.db.Orders;
+import com.kobeleva.db.TechMap;
 import com.kobeleva.db.WoodType;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -63,7 +66,8 @@ public class SpringSecurityController {
 
         WoodType woodType = new WoodType(masterHandler.getSpecies(), masterHandler.getCuttingSection());
         mongoOperation.save(woodType);
-        return "home";
+
+        return "result";
     }
 
     @RequestMapping(value = { "/engineer**" }, method = RequestMethod.GET)
@@ -73,8 +77,24 @@ public class SpringSecurityController {
         }
 
         ModelAndView model = new ModelAndView();
+        List<WoodType> woodType = mongoOperation.findAll(WoodType.class);
+        model.addObject("species", woodType);
         model.setViewName("engineer");
+
         return model;
+    }
+
+    @RequestMapping(value="/engineer", method=RequestMethod.POST)
+    public String greetingSubmit(@ModelAttribute EngineerHandler engineerHandler, Model model) {
+        model.addAttribute("title", "Добавление нового заказа");
+        model.addAttribute("message", "Данные успешно сохранены");
+
+        Orders orders = new Orders(engineerHandler.getWoodType(), engineerHandler.getWoodCount(), engineerHandler.getWoodLength());
+        mongoOperation.save(orders);
+
+        System.out.println("4. Number of user = " + engineerHandler.toString());
+
+        return "result";
     }
 
     @RequestMapping(value = "/profile**", method = RequestMethod.GET)
@@ -114,6 +134,9 @@ public class SpringSecurityController {
         for (int i = 0; i < 5; i++){
             CuttingSection cuttingSection = new CuttingSection("section_" + i);
             mongoOperation.save(cuttingSection);
+
+            TechMap techMap = new TechMap("techMap_" + i);
+            mongoOperation.save(techMap);
         }
 
         init = 1;
