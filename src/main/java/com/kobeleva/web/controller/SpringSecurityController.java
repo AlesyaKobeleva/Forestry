@@ -46,8 +46,7 @@ public class SpringSecurityController {
 
         ModelAndView model = new ModelAndView();
         List<CuttingSection> cuttingSections = mongoOperation.findAll(CuttingSection.class);
-        model.addObject("message", cuttingSections);
-        System.out.println("111cuttingSection = " + cuttingSections);
+        model.addObject("cuttingSections", cuttingSections);
         model.setViewName("master");
         return model;
     }
