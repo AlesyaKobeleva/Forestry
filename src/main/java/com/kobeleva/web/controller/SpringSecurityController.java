@@ -1,5 +1,12 @@
 package com.kobeleva.web.controller;
 
+import com.kobeleva.config.core.MongoConfig;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +23,14 @@ public class SpringSecurityController {
         model.addObject("title", "Курсовой проект - Разработка системы автоматизации работы лесного хозяйства.");
         model.addObject("message", "Выполнила Кобелева Алеся");
         model.setViewName("home");
+        return model;
+    }
+
+    @RequestMapping(value = { "/master**" }, method = RequestMethod.GET)
+    public ModelAndView masterPage() {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("master");
         return model;
     }
 

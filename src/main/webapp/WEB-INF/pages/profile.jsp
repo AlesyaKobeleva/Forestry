@@ -32,11 +32,14 @@
                 <ul class="nav nav-pills" role="tablist">
                     <li role="presentation"><a href="<c:url value="/home" />">Home</a></li>
                     <li role="presentation" class="active"><a href="<c:url value="/profile" />">Профиль пользователя</a></li>
+                    <c:choose>
+                        <c:when test="${pageContext.request.isUserInRole('ROLE_MASTER')}">
+                            <li role="presentation"><a href="<c:url value="/master" />">Учет
+                                Древесины</a></li>
+                        </c:when>
+                    </c:choose>
                 </ul>
             </nav>
-        </c:when>
-        <c:when test="${pageContext.request.userPrincipal.name == null}">
-            <div><a href="<c:url value="/login" />"> Войти</a></div>
         </c:when>
     </c:choose>
 </header>
